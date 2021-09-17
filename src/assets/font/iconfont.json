@@ -1,0 +1,79 @@
+{
+  "id": "2804803",
+  "name": "xiaomi-admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "小米商城后台",
+  "glyphs": [
+    {
+      "icon_id": "1024459",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "4354710",
+      "name": "3-22产品分类生产路线",
+      "font_class": "-chanpinfenleishengchanluxian",
+      "unicode": "e784",
+      "unicode_decimal": 59268
+    },
+    {
+      "icon_id": "13123529",
+      "name": "设 置",
+      "font_class": "shezhi",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "22272297",
+      "name": "订单",
+      "font_class": "order1",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "33519",
+      "name": "home_fill",
+      "font_class": "homefill",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
+    },
+    {
+      "icon_id": "52508",
+      "name": "recharge_fill",
+      "font_class": "rechargefill",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "330204",
+      "name": "my_fill",
+      "font_class": "myfill",
+      "unicode": "e78c",
+      "unicode_decimal": 59276
+    },
+    {
+      "icon_id": "573576",
+      "name": "triangle_down_fill",
+      "font_class": "triangledownfill",
+      "unicode": "e79b",
+      "unicode_decimal": 59291
+    },
+    {
+      "icon_id": "573577",
+      "name": "triangle_up_fill",
+      "font_class": "triangleupfill",
+      "unicode": "e79c",
+      "unicode_decimal": 59292
+    },
+    {
+      "icon_id": "1096510",
+      "name": "goods_new_fill",
+      "font_class": "goodsnewfill",
+      "unicode": "e7bf",
+      "unicode_decimal": 59327
+    }
+  ]
+}
