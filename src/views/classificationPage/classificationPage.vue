@@ -6,12 +6,12 @@
         <div class="formBox">
           <span class="input_label">分类名称</span>
           <input class="input" type="text">
-          <p class="btn search">查询</p>
-          <p class="btn reset">重置</p>
+          <p class="btn search" v-waves>查询</p>
+          <p class="btn reset" v-waves>重置</p>
         </div>
         <div class="formBox">
-          <p class="btn add">添加一个分类</p>
-          <p class="btn click">刷新分类列表</p>
+          <p class="btn add" v-waves>添加一个分类</p>
+          <p class="btn click" v-waves>刷新分类列表</p>
         </div>
       </div>
       <div class="data_count">
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import xmTable from '../../views/xm-table'
+  import xmTable from '@/views/xm-table'
 
   export default {
     name: 'classificationPage',

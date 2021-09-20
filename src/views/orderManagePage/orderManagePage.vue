@@ -7,8 +7,8 @@
             <input class="input" type="text">
             <span class="input_label">邮政编码</span>
             <input class="input" type="text">
-            <p class="btn search">查询</p>
-            <p class="btn reset">重置</p>
+            <p class="btn search" v-waves>查询</p>
+            <p class="btn reset" v-waves>重置</p>
           </div>
           <div class="formBox">
             <span class="input_label">订单状态</span>
@@ -24,7 +24,7 @@
             <span class="input_label">交易关闭</span>
           </div>
           <div class="formBox">
-            <p class="btn click">刷新订单列表</p>
+            <p class="btn click" v-waves>刷新订单列表</p>
           </div>
         </div>
         <div class="data_count">

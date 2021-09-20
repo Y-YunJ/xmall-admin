@@ -51,13 +51,9 @@
       </tbody>
       <tbody v-else-if="stateIndex>-1 && detail">
         <tr v-for="(proItem,proIndex) in fillData" :key="proIndex">
-          <td>
-        <input type="checkbox" class="input">
-      </td>
+          <td><input type="checkbox" class="input"></td>
           <td v-for="(subItem,subIndex) in proItem" :key="subIndex" :style="subIndex===stateIndex?getStateStyle(subItem):{}">{{subItem}}</td>
-          <td>
-            <a class="detail" @click="goDetailPage">详情</a>
-          </td>
+          <td><a class="detail" @click="goDetailPage">详情</a></td>
         </tr>
       </tbody>
       <tbody v-else-if="stateIndex>-1 && !detail">
@@ -173,8 +169,8 @@
       getStateStyle(txt){
         for(let i = 0;i<this.state.length;i++){
           if(this.state[i].type === txt){
-          }
             return{ color:this.state[i].color}
+          }
         }
       },
       getImg(name){
@@ -185,10 +181,8 @@
           if(this.pageThis === this.pageFirstIndex){
             this.pageFirstIndex--;
             this.pageThis--;
-            //数组处理
           }else{
             this.pageThis--
-            //数组处理
           }
         }
       },
@@ -197,10 +191,8 @@
           if(this.pageThis === this.pageFirstIndex+2){
             this.pageFirstIndex++;
             this.pageThis++;
-            //数组处理
           }else{
             this.pageThis++;
-            //数组处理
           }
         }
       },
@@ -208,14 +200,12 @@
         if(!this.preDisable){
           this.pageFirstIndex = 1
           this.pageThis = 1
-          //数组处理
         }
       },
       lastPage(){
         if(!this.nextDisable){
           this.pageFirstIndex = this.totalPage-2
           this.pageThis = this.totalPage
-          //数组处理
         }
       },
       selectPage(add){
@@ -223,14 +213,6 @@
       },
       goDetailPage(){
         this.$router.push(this.path)
-      },
-      test(){
-        console.log('--------------------------------')
-        console.log('this.pageThis:',this.pageThis)
-        console.log('this.totalPage:',this.totalPage)
-        // console.log('this.pageFirstIndex:',this.pageFirstIndex)
-        // console.log('this.fillData:',this.fillData)
-        // console.log('this.dataList:',this.dataList)
       },
     },
   }

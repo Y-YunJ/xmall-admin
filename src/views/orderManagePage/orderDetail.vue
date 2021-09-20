@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="detail_tools">
-          <p class="btn reset">取消</p>
+          <p class="btn reset" v-waves>取消</p>
         </div>
       </div>
     </div>

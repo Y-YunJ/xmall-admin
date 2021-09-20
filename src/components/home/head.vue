@@ -13,8 +13,8 @@
       </div>
       <transition>
         <ul class="head_drop" v-show="dropShow">
-          <li class="manage">账号管理</li>
-          <li class="logout">注销登录</li>
+          <li class="manage" @click="route">账号管理</li>
+          <li class="logout" @click="quit">注销登录</li>
         </ul>
       </transition>
     </div>
@@ -31,6 +31,15 @@
     methods:{
       dropToggle(){
         this.dropShow = !this.dropShow
+      },
+      quit(){
+        this.$session.clear()
+        this.$router.push('/login')
+      },
+      route(){
+        this.$router.push('/accountPage')
+        this.$store.commit('changSlide',6)
+        this.$session.save('slideIndex',6)
       }
     },
   }

@@ -19,21 +19,6 @@
       slide,
       homeTitle,
     },
-    methods:{
-      reLoadHandle(){
-        this.$router.push('/')
-      }
-    },
-    // beforeRouteUpdate(to,from,next){
-    //   this.$store.commit('changeTitle',to.meta.name)
-    //   next()
-    // },
-    mounted () {
-      window.addEventListener('load',this.reLoadHandle)
-    },
-    destroyed(){
-      window.removeEventListener('load',this.reLoadHandle)
-    },
   }
 </script>
 

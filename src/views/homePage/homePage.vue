@@ -3,13 +3,13 @@
     <div class="home_content">
       <div class="container">
         <div class="dateBtnBox">
-          <p class="btn click text_select_no">最近一周</p>
+          <p class="btn click" v-waves>最近一周</p>
           <div class="dateBox btn">
             <input type="date" title="开始日期" min="2021-09-05" max="2021-09-05" value="2021-09-05">
             <span class="split">—</span>
             <input type="date" title="结束日期" min="2018-01-01" max="2021-09-11" value="2021-09-11">
           </div>
-          <p class="btn search text_select_no">查询</p>
+          <p class="btn search" v-waves>查询</p>
         </div>
         <div class="statisticBox">
           <router-link to=" " class="item">

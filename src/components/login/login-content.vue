@@ -20,8 +20,8 @@
     name: 'login-content',
     data(){
       return{
-        acc:'',
-        pas:'',
+        acc:'44634646',
+        pas:'qwer',
       }
     },
     methods:{

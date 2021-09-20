@@ -32,9 +32,13 @@
   cursor: pointer;
   min-width: 70px;
   text-align: center;
+  height:30px;
+  overflow: hidden;
+  user-select: none;
 }
 .btn:hover{
   box-shadow: 0 0 10px #ddd;
+  opacity: 0.8;
 }
 .btn.click{
   background: #70BBF4;

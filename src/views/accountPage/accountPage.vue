@@ -47,7 +47,7 @@
           </div>
         </transition>
         <div class="detail_tools">
-          <p class="btn search">保存</p>
+          <p class="btn search" v-waves>保存</p>
         </div>
       </div>
     </div>
@@ -69,8 +69,9 @@
         this.show = !this.show
       },
       quit(){
-        console.log(this.$route)
-      }
+        this.$session.clear()
+        this.$router.push('/login')
+      },
     },
   }
 </script>

@@ -14,7 +14,7 @@
         <div class="detailBox">
           <div class="detail_title">基本信息</div>
           <div class="detail_info">
-            <span class="input_label detail_label">管理员头像</span>
+            <span class="input_label detail_label">用户头像</span>
             <img class="bigIcon" src="../../assets/img/userDetail/light.png" alt="">
           </div>
           <div class="detail_info">
@@ -56,7 +56,7 @@
           </xm-table>
         </div>
         <div class="detail_tools">
-          <p class="btn reset">取消</p>
+          <p class="btn reset" v-waves>取消</p>
         </div>
       </div>
     </div>

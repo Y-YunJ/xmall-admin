@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state:{
-    title:'首页'
+    title:'首页',
+    slideIndex:0
   },
   mutations:{
     changeTitle(state,payload){
       state.title = payload
+    },
+    changSlide(state,payload){
+      state.slideIndex = payload
     }
   },
 })

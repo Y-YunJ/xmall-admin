@@ -16,8 +16,8 @@
                 </ul>
               </div>
             </button>
-            <p class="btn search">查询</p>
-            <p class="btn reset">重置</p>
+            <p class="btn search" v-waves>查询</p>
+            <p class="btn reset" v-waves>重置</p>
           </div>
           <div class="formBox">
             <span class="input_label">产品状态</span>
@@ -33,8 +33,8 @@
             <input class="input input_number" type="number" placeholder="最高价"/>
           </div>
           <div class="formBox">
-            <div class="btn add">添加一件产品</div>
-            <div class="btn click">刷新产品列表</div>
+            <div class="btn add" v-waves>添加一件产品</div>
+            <div class="btn click" v-waves>刷新产品列表</div>
           </div>
         </div>
         <div class="data_count">
@@ -51,6 +51,7 @@
                   :detail='true'
                   :sort='true'
                   :path="detailPath"
+                  img=""
         />
       </div>
     </div>
@@ -58,7 +59,6 @@
 
 <script>
   import xmTable from '../../views/xm-table'
-
   export default {
     name: 'productPage',
     components:{

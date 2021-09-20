@@ -28,8 +28,8 @@
         </div>
       </div>
       <div class="detail_tools">
-        <p class="btn search">保存</p>
-        <p class="btn reset">取消</p>
+        <p class="btn search" v-waves>保存</p>
+        <p class="btn reset" v-waves>取消</p>
       </div>
     </div>
   </div>

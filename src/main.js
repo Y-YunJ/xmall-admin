@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Utils from './lib/utils'
 import store from './store'
+import waves from './direction/waves/index' // 水波纹指令
 import './assets/css/reset.css'
 import './assets/font/iconfont.css'
 import './assets/css/home.css'
@@ -13,6 +14,7 @@ import './mock'
 
 Vue.config.productionTip = false
 Vue.use(Utils)
+Vue.use(waves)
 
 /* eslint-disable no-new */
 new Vue({
