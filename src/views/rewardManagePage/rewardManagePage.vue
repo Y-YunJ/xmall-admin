@@ -10,11 +10,11 @@
           </div>
           <div class="formBox">
             <span class="input_label">打赏状态</span>
-            <input type="checkbox" class="input" value="待审核">
+            <input type="radio" class="input" value="待审核" :checked="radioIndex === 0" @click="radioHandle(0)">
             <span class="input_label">待审核</span>
-            <input type="checkbox" class="input" value="已审核">
+            <input type="radio" class="input" value="已审核" :checked="radioIndex === 1" @click="radioHandle(1)">
             <span class="input_label">已审核</span>
-            <input type="checkbox" class="input" value="未确认">
+            <input type="radio" class="input" value="未确认" :checked="radioIndex === 2" @click="radioHandle(2)">
             <span class="input_label" style="margin-right: 20px">未确认</span>
             <span class="input_label">金额</span>
             <input class="input input_number" type="number" placeholder="最低价"/>
@@ -37,9 +37,8 @@
                   :data-list="tableData"
                   :state="tableState"
                   :state-index="4"
-                  :detail="true"
+                  :detail="false"
                   :sort="true"
-                  :path="detailPath"
         />
       </div>
     </div>
@@ -53,6 +52,7 @@
     components: {XmTable},
     data(){
       return{
+        radioIndex:0,
         tableTitle:['打赏人昵称','金额','打赏时间','留言','状态'],
         tableState:[
           {
@@ -77,7 +77,6 @@
           ['rj','7498','2021-06-16','nice','已审核'],
           ['tyjr','165','2022-01-01','3434','已审核'],
         ],
-        detailPath: '/',
       }
     },
     computed:{
@@ -89,6 +88,11 @@
         return res
       }
     },
+    methods:{
+      radioHandle(index){
+        this.radioIndex = index
+      }
+    }
   }
 </script>
 

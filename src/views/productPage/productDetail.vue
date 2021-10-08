@@ -5,20 +5,20 @@
           <div class="detail_info">
             <span class="input_label detail_label">产品类型</span>
             <button class="input button drop_margin" @click="showDrop">
-              <span class="input_inner">{{select}}</span>
+              <span class="input_inner">{{productBaseInfo.type || '家电'}}</span>
               <p class="input_tri"></p>
               <div class="drop_content" v-show="dropShow">
                 <ul class="drop_inner">
-                  <li v-for="(item,index) in titleList" :kry="index" @click="selectItem(item)">{{item}}</li>
+                  <li v-for="(item,index) in titleList" :key="index" @click="selectItem(item)">{{item}}</li>
                 </ul>
               </div>
             </button>
             <span class="input_label detail_label">产品状态</span>
-            <input type="radio">
+            <input type="radio" :checked="productBaseInfo.state === 0" @click="radioHandle(0)">
             <span class="input_label">销售中</span>
-            <input type="radio">
+            <input type="radio" :checked="productBaseInfo.state === 1" @click="radioHandle(1)">
             <span class="input_label">停售中</span>
-            <input type="radio">
+            <input type="radio" :checked="productBaseInfo.state === 2" @click="radioHandle(2)">
             <span class="input_label">促销中</span>
           </div>
         </div>
@@ -26,21 +26,21 @@
           <div class="detail_title">基本信息</div>
           <div class="detail_info">
             <span class="input_label detail_label">产品编号</span>
-            <span class="detail_value">1</span>
+            <span class="detail_value">{{productBaseInfo.id}}</span>
             <span class="input_label detail_label">上架日期</span>
-            <span class="detail_value">2018-04-24 10:36:23</span>
+            <span class="detail_value">{{productBaseInfo.date}}</span>
           </div>
           <div class="detail_info">
             <span class="input_label detail_label">产品名称</span>
-            <input class="input detail_value" type="text"/>
+            <input class="input detail_value" type="text" v-model="productBaseInfo.name"/>
             <span class="input_label detail_label">产品标题</span>
-            <input class="input detail_value" type="text"/>
+            <input class="input detail_value" type="text" v-model="productBaseInfo.title"/>
           </div>
           <div class="detail_info">
             <span class="input_label detail_label">产品原价(元)</span>
-            <input class="input input_number detail_value" type="number"/>
+            <input class="input input_number detail_value" type="number" v-model="productBaseInfo.oriPrice"/>
             <span class="input_label detail_label">产品促销价(元)</span>
-            <input class="input input_number detail_value" type="number"/>
+            <input class="input input_number detail_value" type="number" v-model="productBaseInfo.curPrice"/>
           </div>
         </div>
         <div class="detailBox">
@@ -64,13 +64,13 @@
           <div class="propertyBox">
             <div class="detail_info" v-for="(item,index) in selectProperty.itemList" :key="index">
               <span class="input_label detail_property">{{item}}</span>
-              <input class="input" type="text" :value="selectProperty.itemData[index]">
+              <input class="input" type="text" v-model="productDetailInfo[index]">
             </div>
           </div>
         </div>
         <div class="detail_tools">
-          <p class="btn search" v-waves>保存</p>
-          <p class="btn reset" v-waves>取消</p>
+          <p class="btn search" v-waves @click="saveHandle">保存</p>
+          <p class="btn reset" v-waves @click="cancelHandle">取消</p>
         </div>
       </div>
     </div>
@@ -83,6 +83,10 @@
     name: 'productDetail',
     data(){
       return{
+        dropShow:false,
+        productProperty:[],
+        selectProperty:Object,
+        dataUrl:'productProperty',
         titleList:[
           "家电",
           "手机/电话卡",
@@ -104,11 +108,17 @@
           {'id':9,'url':require("../../assets/img/productDetail/10.jpg")},
           {'id':10,'url':require("../../assets/img/productDetail/11.jpg")},
         ],
-        select:'',
-        dropShow:false,
-        productProperty:[],
-        selectProperty:Object,
-        dataUrl:'productProperty',
+        productBaseInfo:{
+          type:'家电',
+          state:0,
+          id:1,
+          date:'2018-04-24 10:36:23',
+          name:'米家集尘扫拖机器人',
+          title:'自动倒垃圾，45天手不沾尘',
+          oriPrice:2999,
+          curPrice:1999,
+        },
+        productDetailInfo:[],
       }
     },
     computed:{
@@ -119,29 +129,64 @@
         this.dropShow = !this.dropShow
       },
       selectItem(item){
-        this.select = item
+        this.productBaseInfo.type = item
       },
+      radioHandle(index){
+        this.productBaseInfo.state = index
+      },
+      isAdd(){
+        if(this.$route.meta.hasOwnProperty('isAdd')){
+          this.img = []
+          for(let i = 0;i < this.productDetailInfo.length;i++){
+            this.productDetailInfo[i] = ' '
+          }
+          this.productBaseInfo = {
+            type:'家电',
+            state:0,
+            id:'系统自动生成',
+            date:'系统自动生成',
+            name:'',
+            title:'',
+            oriPrice:'',
+            curPrice:'',
+          }
+        }
+      },
+      fetchData(){
+        axios({
+          method:'get',
+          url:this.dataUrl,
+        }).then((response) =>{
+          this.productProperty = response.data.datas
+          this.selectProperty = this.productProperty[0]
+          this.productDetailInfo = this.selectProperty.itemData
+          this.isAdd()
+        }).catch((error) => {
+          console.log(error)
+        })
+      },
+      saveHandle(){
+        this.$store.commit('activeDialog','保存成功')
+      },
+      cancelHandle(){}
     },
     watch:{
-      select:function (val) {
-        let res = this.productProperty
-        this.selectProperty = res.filter((item) =>{
-          return item.itemName === val
-        })[0]
+      productBaseInfo:{
+        handler(val) {
+          let res = this.productProperty
+          this.selectProperty = res.filter((item) =>{
+            return item.itemName === val.type
+          })[0]
+          if(!this.$route.meta.hasOwnProperty('isAdd')){
+            this.productDetailInfo = this.selectProperty.itemData
+          }
+        },
+        deep:true
       }
     },
     created(){
-      axios({
-        method:'get',
-        url:this.dataUrl,
-      }).then((response) =>{
-        this.productProperty = response.data.datas
-        this.selectProperty = this.productProperty[0]
-        this.select = this.titleList[0]
-      }).catch((error) => {
-        console.log(error)
-      })
-    }
+      this.fetchData()
+    },
   }
 </script>
 

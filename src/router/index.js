@@ -1,5 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
+
+// NProgress Configuration
+NProgress.configure({ showSpinner: false })
 
 Vue.use(Router)
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
@@ -22,7 +27,8 @@ let router = new Router({
           component:() => import('../views/homePage/homePage'),
           meta:{
             login:true,
-            name:'首页'
+            name:'首页',
+            index:0,
           }
         },
         {
@@ -31,7 +37,8 @@ let router = new Router({
           component:() => import('../views/productPage/productPage'),
           meta:{
             login:true,
-            name:'全部产品'
+            name:'全部产品',
+            index:1,
           },
         },
         {
@@ -40,7 +47,8 @@ let router = new Router({
           component:() => import('../views/classificationPage/classificationPage'),
           meta:{
             login:true,
-            name:'产品分类'
+            name:'产品分类',
+            index:2,
           }
         },
         {
@@ -49,7 +57,8 @@ let router = new Router({
           component:() => import('../views/userManagePage/userManagePage'),
           meta:{
             login:true,
-            name:'用户管理'
+            name:'用户管理',
+            index:3,
           }
         },
         {
@@ -58,7 +67,8 @@ let router = new Router({
           component:() => import('../views/orderManagePage/orderManagePage'),
           meta:{
             login:true,
-            name:'全部订单'
+            name:'全部订单',
+            index:4,
           }
         },
         {
@@ -67,7 +77,8 @@ let router = new Router({
           component:() => import('../views/rewardManagePage/rewardManagePage'),
           meta:{
             login:true,
-            name:'打赏信息'
+            name:'打赏信息',
+            index:5,
           }
         },
         {
@@ -76,7 +87,8 @@ let router = new Router({
           component:() => import('../views/accountPage/accountPage'),
           meta:{
             login:true,
-            name:'我的账号'
+            name:'我的账号',
+            index:6,
           }
         },
         {
@@ -85,7 +97,19 @@ let router = new Router({
           component:() => import('../views/productPage/productDetail'),
           meta:{
             login:true,
-            name:'产品详情'
+            name:'产品详情',
+            index:1,
+          }
+        },
+        {
+          path: 'productAdd',
+          name:'productAdd',
+          component:() => import('../views/productPage/productDetail'),
+          meta:{
+            login:true,
+            name:'添加产品',
+            isAdd:true,
+            index:1,
           }
         },
         {
@@ -94,7 +118,19 @@ let router = new Router({
           component:() => import('../views/classificationPage/classificationDetail'),
           meta:{
             login:true,
-            name:'分类详情'
+            name:'分类详情',
+            index:2,
+          }
+        },
+        {
+          path: 'classificationAdd',
+          name:'classificationAdd',
+          component:() => import('../views/classificationPage/classificationDetail'),
+          meta:{
+            login:true,
+            name:'添加分类',
+            isAdd:true,
+            index:2,
           }
         },
         {
@@ -103,7 +139,8 @@ let router = new Router({
           component:() => import('../views/userManagePage/userDetail'),
           meta:{
             login:true,
-            name:'用户详情'
+            name:'用户详情',
+            index:3,
           }
         },
         {
@@ -112,7 +149,8 @@ let router = new Router({
           component:() => import('../views/orderManagePage/orderDetail'),
           meta:{
             login:true,
-            name:'订单详情'
+            name:'订单详情',
+            index:4,
           }
         }
       ]
@@ -124,12 +162,22 @@ let router = new Router({
     {
       path:'/login',
       name:'login',
-      component:() => import('@/components/login/login')
+      component:() => import('@/components/login/login'),
+      meta:{
+        name:'登录'
+      }
     }
   ]
 })
 
 router.beforeEach((to,from,next) => {
+  // start progress bar
+  NProgress.start()
+
+  // set page title
+  document.title = 'xmall管理后台-'+to.meta.name
+
+  //check login
   let bl = to.matched.some((item) => {
     return item.meta.login
   })
@@ -143,5 +191,10 @@ router.beforeEach((to,from,next) => {
   }else{
     next()
   }
+})
+
+router.afterEach(() => {
+  // finish progress bar
+  NProgress.done()
 })
 export default router

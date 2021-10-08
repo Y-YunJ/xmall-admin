@@ -12,15 +12,15 @@
           </div>
           <div class="formBox">
             <span class="input_label">订单状态</span>
-            <input type="checkbox" class="input" value="待付款">
+            <input type="radio" class="input" value="待付款" :checked="radioIndex === 0" @click="radioHandle(0)">
             <span class="input_label">待付款</span>
-            <input type="checkbox" class="input" value="待发货">
+            <input type="radio" class="input" value="待发货" :checked="radioIndex === 1" @click="radioHandle(1)">
             <span class="input_label">待发货</span>
-            <input type="checkbox" class="input" value="待确认">
+            <input type="radio" class="input" value="待确认" :checked="radioIndex === 2" @click="radioHandle(2)">
             <span class="input_label">待确认</span>
-            <input type="checkbox" class="input" value="交易成功">
+            <input type="radio" class="input" value="交易成功" :checked="radioIndex === 3" @click="radioHandle(3)">
             <span class="input_label">交易成功</span>
-            <input type="checkbox" class="input" value="交易关闭">
+            <input type="radio" class="input" value="交易关闭" :checked="radioIndex === 4" @click="radioHandle(4)">
             <span class="input_label">交易关闭</span>
           </div>
           <div class="formBox">
@@ -53,6 +53,7 @@
     components: {XmTable},
     data(){
       return{
+        radioIndex:0,
         tableTitle:['订单号','邮政编码','收货人','联系方式','订单状态'],
         tableState:[
           {
@@ -89,6 +90,11 @@
     computed:{
       total(){
         return this.tableData.length
+      }
+    },
+    methods:{
+      radioHandle(index){
+        this.radioIndex = index
       }
     }
   }

@@ -10,7 +10,7 @@
           <p class="btn reset" v-waves>重置</p>
         </div>
         <div class="formBox">
-          <p class="btn add" v-waves>添加一个分类</p>
+          <p class="btn add" v-waves @click="addHandle">添加一个分类</p>
           <p class="btn click" v-waves>刷新分类列表</p>
         </div>
       </div>
@@ -64,6 +64,11 @@
         return this.tableData.length
       }
     },
+    methods:{
+      addHandle(){
+        this.$router.push('/classificationAdd')
+      }
+    }
   }
 </script>
 

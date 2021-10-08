@@ -21,11 +21,11 @@
           </div>
           <div class="formBox">
             <span class="input_label">产品状态</span>
-            <input type="checkbox" class="input" value="销售中">
+            <input type="radio" class="input" value="0" :checked="radioIndex === 0" @click="radioHandle(0)">
             <span class="input_label">销售中</span>
-            <input type="checkbox" class="input" value="停售中">
+            <input type="radio" class="input" value="1" :checked="radioIndex === 1" @click="radioHandle(1)">
             <span class="input_label">停售中</span>
-            <input type="checkbox" class="input" value="促销中">
+            <input type="radio" class="input" value="2" :checked="radioIndex === 2" @click="radioHandle(2)">
             <span class="input_label" style="margin-right: 20px">促销中</span>
             <span class="input_label">金额</span>
             <input class="input input_number" type="number" placeholder="最低价"/>
@@ -33,7 +33,7 @@
             <input class="input input_number" type="number" placeholder="最高价"/>
           </div>
           <div class="formBox">
-            <div class="btn add" v-waves>添加一件产品</div>
+            <div class="btn add" v-waves @click="addHandle">添加一件产品</div>
             <div class="btn click" v-waves>刷新产品列表</div>
           </div>
         </div>
@@ -79,6 +79,7 @@
           "耳机 音箱",
           "生活 箱包",
         ],
+        radioIndex:0,
         select:'全部',
         dropShow:false,
         tableTitle:['产品名称','产品标题','原价','促销价','创建时间','上架状态'],
@@ -147,6 +148,12 @@
       },
       showDrop(){
         this.dropShow = !this.dropShow
+      },
+      addHandle(){
+        this.$router.push('/productAdd')
+      },
+      radioHandle(index){
+        this.radioIndex = index
       }
     },
   }

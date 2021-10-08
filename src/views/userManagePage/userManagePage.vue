@@ -10,9 +10,9 @@
         </div>
         <div class="formBox">
           <span class="input_label">用户性别</span>
-          <input type="checkbox" class="input" value="男">
+          <input type="radio" class="input" value="0" :checked="radioIndex === 0" @click="radioHandle(0)">
           <span class="input_label">男</span>
-          <input type="checkbox" class="input" value="女">
+          <input type="radio" class="input" value="1" :checked="radioIndex === 1" @click="radioHandle(1)">
           <span class="input_label">女</span>
         </div>
         <div class="formBox">
@@ -45,6 +45,7 @@
     components: {XmTable},
     data(){
       return{
+        radioIndex:0,
         tableTitle:['账号','昵称','姓名','出生日期','性别'],
         tableData:[
           [' 0000aa','aaa','张三','2019-09-28','男'],
@@ -73,6 +74,11 @@
     computed:{
       total(){
         return this.tableData.length
+      }
+    },
+    methods:{
+      radioHandle(index){
+        this.radioIndex = index
       }
     }
   }
